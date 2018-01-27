@@ -1,9 +1,5 @@
-zlib.js
+zlib.js for Google Apps Script
 =======
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/imaya/zlib.js.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.org/imaya/zlib.js.png?branch=master)](https://travis-ci.org/imaya/zlib.js)
 
 [English version](./README.en.md)
 
@@ -13,6 +9,12 @@ zlib.js は ZLIB(RFC1950), DEFLATE(RFC1951), GZIP(RFC1952), PKZIP の JavaScript
 使い方
 ------
 
+1. Google Apps Script editor上のメニューから「リソース」→「ライブラリ...」を選択します。
+2. 「ライブラリを追加」右のテキストボックスにプロジェクトキー`1FdxEwLDbqy7jXkQNhSiszIdrx19kG2HuQHcCNfWNM98WJ-IyKLk0gyEe ` を入力し、「追加」ボタンをクリックします。
+3. 「バージョン」欄で任意のバージョンを選択し、「識別子」を "Zlib" とします。
+4. 下にある「保存」ボタンを押します。
+
+<!--
 zlib.js は必要な機能ごとに分割されています。
 bin ディレクトリから必要なものを利用してください。
 
@@ -31,7 +33,7 @@ bin ディレクトリから必要なものを利用してください。
         * zip.min.js ZIP
         * unzip.min.js UNZIP
 - node-zlib.js: (ZLIB + GZIP for node.js)
-
+-->
 
 ### 圧縮 (Compress)
 
@@ -42,16 +44,16 @@ bin ディレクトリから必要なものを利用してください。
 var deflate = new Zlib.RawDeflate(plain);
 var compressed = deflate.compress();
 ```
-
+<!--
 #### Raw Deflate Option
 
 ZLIB Option を参照してください。
 
-
+-->
 #### ZLIB
 
 ```js
-// plain = Array.<number> or Uint8Array
+// plain = Array.<number>
 var deflate = new Zlib.Deflate(plain);
 var compressed = deflate.compress();
 ```
@@ -74,7 +76,7 @@ default は <code>DYNAMIC</code> です。
 <code>lazy</code> は Lazy Matching の閾値を指定します。
 Lazy Matching とは、LZSS のマッチ長が閾値より低かった場合、次の Byte から LZSS の最長一致を試み、マッチ長の長い方を選択する手法です。
 
-
+<!--
 #### GZIP
 
 GZIP の実装は現在不完全ですが、ただの圧縮コンテナとして使用する場合には特に問題はありません。
@@ -149,12 +151,12 @@ filename, comment, extraField は Typed Array が使用可能な場合は必ず 
     deflateOption: Object // see: ZLIB Option
 }
 ```
-
+-->
 ### 伸張 (Decompress)
 
 圧縮されたデータの伸張は、基本的に各コンストラクタに圧縮されたデータを渡し、
 それの <code>decompress</code> メソッドを呼ぶ事で伸張処理を開始する事が出来ます。
-
+<!--
 #### Raw Deflate
 
 ```js
@@ -166,7 +168,7 @@ var plain = inflate.decompress();
 #### Raw Deflate Option
 
 ZLIB Option を参照してください。
-
+-->
 #### ZLIB
 
 ```js
@@ -201,7 +203,7 @@ default は <code>false</code> です。
 <code>verify</code> オプションは Adler-32 Checksum の検証を行うかを指定します。
 default は <code>false</code> です。
 
-
+<!--
 #### GZIP
 
 ```js
@@ -225,93 +227,7 @@ var plain = unzip.decompress(filenames[0]);
 ```
 
 Unzip のオプションは現在ありません。
-
-
-### Node.js
-
-Node.js で使用する場合はユニットテストを参照してください。
-<https://github.com/imaya/zlib.js/blob/master/test/node-test.js>
-
-
-## Debug
-
-zlib.js では JavaScript ファイルを minify された形で提供していますが、開発中やデバッグ時に minify する前の状態が知りたい事があります。
-そういった時のために SourceMaps ファイルや Pretty Print されたファイルも提供しています。
-
-
-### Source Map
-
-Source Map を使いたい場合はファイル名に `dev` のついたバージョンを使います。
-例えば Source Map を有効にした Inflate を使いたい場合は以下になります。
-
-    - inflate.min.js // リリースバージョン
-    - inflate.dev.min.js // 開発バージョン（これを使う）
-
-
-### Pretty Print
-
-SourceMaps とは異なりますが、minify の変数名の短縮のみ避けられれば良いという場合には、 Closure Compiler で読みやすくしたファイルを利用することも可能です。
-`zlib.pretty.js` というファイル名で全ての実装がはいっていますので、minify されたものをこのファイルに置き換えるだけで使用できます。
-
-
-
-How to build
-------------
-
-ビルドは Grunt と Closure Compiler を使用して行います。
-
-### 必要な環境
-
-- Grunt
-- Python
-
-### ビルド
-
-Grunt を使ってビルドを行います。
-
-```
-$ grunt [target]
-```
-
-#### ビルドターゲット
-
-target         | ファイル名             | 含まれる実装
----------------|-----------------------|-------------
-deps           | deps.js               | 依存関係の解決
-deflate        | deflate.min.js        | ZLIB Deflate
-inflate        | inflate.min.js        | ZLIB Inflate
-inflate_stream | inlfate_stream.min.js | ZLIB Inlate (stream)
-zlib           | zlib.min.js           | ZLIB Deflate + Inflate
-gzip           | gzip.min.js           | GZIP Compression
-gunzip         | gunzip.min.js         | GZIP Decompression
-zlib_and_gzip  | zlib_and_gzip.min.js  | ZLIB + GZIP
-node           | node-zlib.js          | ZLIB + GZIP for node.js
-zip            | zip.min.js            | PKZIP Compression
-unzip          | unzip.min.js          | PKZIP Decompression
-all            | *                     | default target
-
-
-テスト
-------
-
-ブラウザでは Karma, Node.js では mocha を使ってテストを行います。
-
-```
-$ npm test
-```
-
-### ブラウザのみのテスト
-
-```
-$ npm run test-karma
-```
-
-### Node.js のみのテスト
-
-```
-$ npm run test-mocha
-```
-
+-->
 
 Issue
 -----

@@ -11,27 +11,16 @@ zlib.js is ZLIB(RFC1950), DEFLATE(RFC1951), GZIP(RFC1952) and PKZIP implementati
 Usage
 ------
 
-Use one in "bin" directory.
-
-- zlib_and_gzip.min.js: ZLIB + GZIP
-    + (Raw)
-        * rawdeflate.js: Raw Deflate
-        * rawinflate.js: Raw Inflate
-    + zlib.min.js: ZLIB Inflate + Deflate
-        * inflate.min.js: ZLIB Inflate
-        * deflate.min.js: ZLIB Deflate
-        * inflate_stream.min.js: ZLIB Inflate (stream mode)
-    + (GZIP)
-        * gzip.min.js: GZIP
-        * gunzip.min.js: GUNZIP
-    + (PKZIP)
-        * zip.min.js ZIP
-        * unzip.min.js UNZIP
-- node-zlib.js: (ZLIB + GZIP for node.js)
+1. Select "Resources" > "Libraries..." in the Google Apps Script
+editor.
+2. Enter the project key `1FdxEwLDbqy7jXkQNhSiszIdrx19kG2HuQHcCNfWNM98WJ-IyKLk0gyEe` in the "Find a Library" field, and choose "Select". 
+3. Choose a version in the dropdown box, and choose Zlib as the
+identifier. 
+4. Click the "Save" button.
 
 
 ### Compression
-
+<!--
 #### Raw Deflate
 
 ```js
@@ -43,7 +32,7 @@ var compressed = deflate.compress();
 #### Raw Deflate Option
 
 See ZLIB Option.
-
+-->
 #### ZLIB
 
 ```js
@@ -70,7 +59,7 @@ Default value is <code>DYNAMIC</code>.
 <code>lazy</code> is Lazy Matching length.
 This parameter is deprecated.
 
-
+<!--
 #### GZIP
 
 GZIP implementation is incomplete.
@@ -143,9 +132,9 @@ filename, comment, extraField are must use Uint8Array if enabled Typed Array.
     deflateOption: Object // see: ZLIB Option
 }
 ```
-
+-->
 ### Decompression
-
+<!--
 #### Raw Deflate
 
 ```js
@@ -157,7 +146,7 @@ var plain = inflate.decompress();
 #### Raw Deflate Option
 
 See ZLIB Option.
-
+-->
 #### ZLIB
 
 ```js
@@ -186,7 +175,7 @@ Choose one <code>ADAPTIVE</code>(default) and <code>BLOCK</code>.
 - <code>ADAPTIVE</code>: buffer expansion based on compression ratio in filled buffer.
 - <code>BLOCK</code>: buffer expansion based on <code>BufferSize</code>.
 
-
+<!--
 #### GZIP
 
 ```js
@@ -211,64 +200,9 @@ var plain = unzip.decompress(filenames[0]);
 
 see unit tests.
 <https://github.com/imaya/zlib.js/blob/master/test/node-test.js>
+-->
 
-
-## Debug
-
-If you want to know the code before compile, SourceMaps and PrettyPrint can be used.
-
-
-### Source Map
-
-If you want to use the Source Map, use `dev` version.
-
-For example, you want to use Inflate with Source Map.
-
-    - inflate.min.js // release version
-    - inflate.dev.min.js // development version <- use this
-
-
-### Pretty Print
-
-`zlib.pretty.js` is not renamed symbol.
-
-
-How to build
-------------
-
-Build using Grunt and Closure Compiler.
-
-### Requirement
-
-- Grunt
-- Python
-
-### Build
-
-Use "grunt" command.
-
-```
-$ grunt [target]
-```
-
-#### Build target
-
-target         | generate file         | implementation
----------------|-----------------------|-------------
-deps           | deps.js               | (dependency: deps.js)
-deflate        | deflate.min.js        | ZLIB Deflate
-inflate        | inflate.min.js        | ZLIB Inflate
-inflate_stream | inflate_stream.min.js | ZLIB Inflate (stream)
-zlib           | zlib.min.js           | ZLIB Deflate + Inflate
-gzip           | gzip.min.js           | GZIP Compression
-gunzip         | gunzip.min.js         | GZIP Decompression
-zlib_and_gzip  | zlib_and_gzip.min.js  | ZLIB + GZIP
-node           | node-zlib.js          | ZLIB + GZIP for node.js
-zip            | zip.min.js            | PKZIP Compression
-unzip          | unzip.min.js          | PKZIP Decompression
-all            | *                     | default target
-
-
+<!--
 Test
 ------
 
@@ -289,7 +223,7 @@ $ npm run test-karma
 ```
 $ npm run test-mocha
 ```
-
+-->
 
 Issue
 -----

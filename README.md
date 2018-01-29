@@ -36,7 +36,7 @@ bin ディレクトリから必要なものを利用してください。
 -->
 
 ### 圧縮 (Compress)
-
+<!--
 #### Raw Deflate
 
 ```js
@@ -44,7 +44,7 @@ bin ディレクトリから必要なものを利用してください。
 var deflate = new Zlib.RawDeflate(plain);
 var compressed = deflate.compress();
 ```
-<!--
+
 #### Raw Deflate Option
 
 ZLIB Option を参照してください。

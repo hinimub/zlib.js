@@ -1,7 +1,5 @@
-zlib.js
-=======
-
-[![Build Status](https://travis-ci.org/imaya/zlib.js.png?branch=master)](https://travis-ci.org/imaya/zlib.js)
+zlib.js for Google Apps Script
+==============================
 
 [Japanese version](./README.md)
 
